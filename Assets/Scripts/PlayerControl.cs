@@ -11,6 +11,8 @@ public class PlayerControl : MonoBehaviour
 	public float maxStamina;
 	public float dashSpeed;
 	public Text staminaText;
+	public SpriteRenderer sr;
+	public Sprite winSprite;
 
 	private float stamina;
 	private bool canDash;
@@ -49,5 +51,11 @@ public class PlayerControl : MonoBehaviour
 		rb.velocity = new Vector2 (horVel, verVel);
 		staminaText.text = "Stamina: " + stamina + "\nSpeed: " + rb.velocity;
 
+	}
+
+	void OnCollisionEnter2D(Collision2D other){
+		if (other.gameObject.tag == "monster") {
+			sr.sprite = winSprite;	// temporary win behavior - change player color to yellow
+		}
 	}
 }

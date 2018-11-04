@@ -7,6 +7,8 @@ TagManager:
   - player
   - wall
   - monster
+  - cage
+  - bait
   layers:
   - Default
   - TransparentFX

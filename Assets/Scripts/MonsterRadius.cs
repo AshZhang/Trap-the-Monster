@@ -13,20 +13,22 @@ public class MonsterRadius : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		transform.position = monster.transform.position;
 	}
 
 	void OnTriggerStay2D (Collider2D other)
 	{
-		if (other.gameObject.tag == "player") {
-			Vector2 dirToPlayer = transform.position - other.gameObject.transform.position;
-			dirToPlayer.Normalize ();
-			monster.GetComponent<Rigidbody2D> ().velocity = dirToPlayer * 4;
+		if (!monster.GetComponent<Monster>().trapped) {
+			if (other.gameObject.tag == "player") {
+				Vector2 dirToPlayer = transform.position - other.gameObject.transform.position;
+				dirToPlayer.Normalize ();
+				monster.GetComponent<Rigidbody2D> ().velocity = dirToPlayer * 4;
+			}
 		}
 	}
 	void OnTriggerExit2D(Collider2D other){
