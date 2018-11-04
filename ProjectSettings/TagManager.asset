@@ -9,6 +9,7 @@ TagManager:
   - monster
   - cage
   - bait
+  - pit
   layers:
   - Default
   - TransparentFX

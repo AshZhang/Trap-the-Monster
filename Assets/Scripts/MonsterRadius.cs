@@ -21,9 +21,9 @@ public class MonsterRadius : MonoBehaviour
 		transform.position = monster.transform.position;
 	}
 
-	void OnTriggerStay2D (Collider2D other)
+	void OnTriggerStay2D (Collider2D other)		// This radius is for "seeing" the player
 	{
-		if (!monster.GetComponent<Monster>().trapped) {
+		if (!monster.GetComponent<Monster>().trapped) {		// Current monster behavior - move away when player approaches...
 			if (other.gameObject.tag == "player") {
 				Vector2 dirToPlayer = transform.position - other.gameObject.transform.position;
 				dirToPlayer.Normalize ();
@@ -32,6 +32,6 @@ public class MonsterRadius : MonoBehaviour
 		}
 	}
 	void OnTriggerExit2D(Collider2D other){
-		monster.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		monster.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;	// ...and do nothing if player is not nearby
 	}
 }
