@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
 
-	public Collider2D radius;
-	public Rigidbody2D rb;
-	public GameObject player;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +13,4 @@ public class Monster : MonoBehaviour {
 	void Update () {
 		
 	}
-
-
 }
