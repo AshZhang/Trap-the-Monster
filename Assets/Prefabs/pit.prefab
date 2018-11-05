@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4621427427910636}
   - component: {fileID: 212532561306374452}
   - component: {fileID: 61550527084716752}
+  - component: {fileID: 114462913453518614}
   m_Layer: 0
   m_Name: pit
   m_TagString: pit
@@ -57,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.7, y: 0.7}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &114462913453518614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803935322047994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fa945c981444de3a7d1981ca701365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ruined: {fileID: 21300000, guid: 34671ce0b6fca4affa2da051a9ba7da7, type: 3}
+  sr: {fileID: 212532561306374452}
 --- !u!212 &212532561306374452
 SpriteRenderer:
   m_ObjectHideFlags: 1
