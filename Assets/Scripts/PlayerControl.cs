@@ -67,7 +67,6 @@ public class PlayerControl : MonoBehaviour
 		}
 		rb.velocity = new Vector2 (horVel, verVel);
 		staminaText.text = "Stamina: " + stamina + "\nSpeed: " + rb.velocity + "\nJumps left: " + pitJumps;	// Text for debug purposes
-
 	}
 
 	void OnCollisionEnter2D (Collision2D other)
