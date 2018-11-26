@@ -8,8 +8,6 @@ public class MonsterRadius : MonoBehaviour
 
 	public GameObject monster;
 
-	private bool runningAway;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -25,9 +23,11 @@ public class MonsterRadius : MonoBehaviour
 	{
 		if (!monster.GetComponent<Monster>().trapped) {		// Current monster behavior - move away when player approaches...
 			if (other.gameObject.tag == "player") {
-				Vector2 dirToPlayer = transform.position - other.gameObject.transform.position;
-				dirToPlayer.Normalize ();
-				monster.GetComponent<Rigidbody2D> ().velocity = dirToPlayer * 4;
+				float xDiff = monster.transform.position.x - other.gameObject.transform.position.x;
+				monster.GetComponent<Monster>().facingRight = xDiff > 0;
+				xDiff = xDiff / Mathf.Abs (xDiff);
+				Rigidbody2D rb = monster.GetComponent<Rigidbody2D> ();
+				rb.velocity = new Vector2(xDiff * 4, rb.velocity.y);
 			}
 		}
 	}

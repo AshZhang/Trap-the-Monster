@@ -1738,9 +1738,7 @@ GameObject:
   - component: {fileID: 787647951}
   - component: {fileID: 787647950}
   - component: {fileID: 787647955}
-  - component: {fileID: 787647954}
-  - component: {fileID: 787647956}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1761,7 +1759,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1843,27 +1841,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 787647949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.337, y: -3.901, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &787647954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 787647949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65e6d5113b7747aa8ae0442c036101b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheckRad: 0.01
 --- !u!114 &787647955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,29 +1860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 787647950}
   trapped: 0
-  facingRight: 0
-  player: {fileID: 1375275461}
-  cg: {fileID: 787647954}
-  canSeePlayer: 0
-  sr: {fileID: 787647952}
-  anim: {fileID: 787647956}
---- !u!95 &787647956
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 787647949}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 45c6c85eebfac444084b0e1b544bcf43, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &828095302
 Prefab:
   m_ObjectHideFlags: 0
@@ -2197,7 +2157,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4621427427910636, guid: 6864c668f2ac847c8bd5ad4352ae1bd3, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6864c668f2ac847c8bd5ad4352ae1bd3, type: 2}
@@ -2821,10 +2781,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1237355436}
-  - component: {fileID: 1237355440}
   - component: {fileID: 1237355437}
-  m_Layer: 2
-  m_Name: monster see traps
+  - component: {fileID: 1237355438}
+  m_Layer: 0
+  m_Name: monster collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2837,14 +2797,14 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1237355435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.43, y: 0.16, z: 0}
+  m_LocalPosition: {x: 2.0195432, y: 0.49708354, z: -0.096909165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1237355437
-BoxCollider2D:
+--- !u!58 &1237355437
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2856,19 +2816,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 0.64}
-  m_EdgeRadius: 0
---- !u!114 &1237355440
+  m_Radius: 1.6
+--- !u!114 &1237355438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2876,11 +2826,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1237355435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d818488cd2a64096a6f753bbe573dec, type: 3}
+  m_Script: {fileID: 11500000, guid: 74f63f6ae214a49f2abd5815ddd2e5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 787647949}
-  jumpForce: 5
 --- !u!1001 &1339947231
 Prefab:
   m_ObjectHideFlags: 0
@@ -3015,8 +2964,6 @@ GameObject:
   - component: {fileID: 1375275465}
   - component: {fileID: 1375275464}
   - component: {fileID: 1375275466}
-  - component: {fileID: 1375275467}
-  - component: {fileID: 1375275468}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -3058,12 +3005,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d846507700fad492bb998c3d1aa31851, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28f6fae13d82149fe82245697b2434c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3075,7 +3022,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1375275461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.11, y: -0.99, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3113,16 +3060,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
+  ground:
+    serializedVersion: 2
+    m_Bits: 256
+  groundCheckRad: 0.01
   vel: 3
   rb: {fileID: 1375275464}
-  cg: {fileID: 1375275467}
   maxPitJumps: 5
   movementText: {fileID: 1392580167}
   sr: {fileID: 1375275462}
   normalSprite: {fileID: 21300000, guid: 28f6fae13d82149fe82245697b2434c0, type: 3}
   winSprite: {fileID: 21300000, guid: ef2613e134ab242f4be3079342e88b61, type: 3}
   trappedSprite: {fileID: 21300000, guid: 23f71aedf3f57486298257d223931899, type: 3}
-  anim: {fileID: 1375275468}
 --- !u!61 &1375275466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3135,51 +3084,19 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.85333335, y: 0.85333335}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.9}
+  m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &1375275467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1375275461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65e6d5113b7747aa8ae0442c036101b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheckRad: 0.01
---- !u!95 &1375275468
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1375275461}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d4639b8b4159a4b6283afa48e8d86488, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1386439925
 Prefab:
   m_ObjectHideFlags: 0
@@ -3476,11 +3393,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4081683927478068, guid: a378f32969b844bf1af607c1354cdb55, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.547
+      value: 3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4081683927478068, guid: a378f32969b844bf1af607c1354cdb55, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.128
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4081683927478068, guid: a378f32969b844bf1af607c1354cdb55, type: 2}
       propertyPath: m_LocalPosition.z

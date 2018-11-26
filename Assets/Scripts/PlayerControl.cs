@@ -5,74 +5,68 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-
+	public float jumpForce;
 	public float vel;
 	public Rigidbody2D rb;
+	public CheckGround cg;
 
-	public float maxStamina;
-	// How much total stamina player has
-	public float dashSpeed;
 	public int maxPitJumps;
 	// How many jumps the player must do in total to get out of pit
-	public Text staminaText;
+	public Text movementText;
 
 	public SpriteRenderer sr;
 	public Sprite normalSprite;
 	public Sprite winSprite;
 	public Sprite trappedSprite;
+	public Animator anim;
 
-	private float stamina;
-	private bool canDash;
 	private int pitJumps;
 	// How many jumps the player still has to do if they are trapped in a pit (starts at 0)
 
 	// Use this for initialization
 	void Start ()
 	{
-		stamina = maxStamina;
 		pitJumps = 0;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		bool canJump = cg.canJump();
 		float horVel = 0;
-		float verVel = 0;
 		if (pitJumps > 0) {
-			if (Input.GetKeyDown ("space")) {
+			if (Input.GetAxis ("Jump") != 0) {
 				pitJumps -= 1;
 			}
 			if (pitJumps == 0) {
 				sr.sprite = normalSprite;
 			}
-		} else if (Input.GetAxis ("Dash") > 0 && canDash) {	// Player can dash briefly by pressing space - this drains stamina
-			horVel = (vel + dashSpeed) * Input.GetAxis ("Horizontal");
-			verVel = (vel + dashSpeed) * Input.GetAxis ("Vertical");
-			if (horVel != 0 || verVel != 0) {
-				stamina -= 1;
-			} else if (stamina < maxStamina) {
-				stamina += 0.5f;
-			}
-			if (stamina <= 0) {
-				canDash = false;
-			}
-		} else {	// stamina is replenished by not dashing
-			if (stamina < maxStamina) {
-				stamina += 0.5f;
-			} else {
-				canDash = true;
-			}
+		} else {
 			horVel = vel * Input.GetAxis ("Horizontal");
-			verVel = vel * Input.GetAxis ("Vertical");
+			if (Input.GetKeyDown ("up") && canJump) {
+				rb.AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
+			}
+			if (horVel < 0) {
+				sr.flipX = true;
+			}
+			if (horVel > 0) {
+				sr.flipX = false;
+			}
+			anim.SetBool ("running", cg.canJump () && Input.GetAxis("Horizontal") != 0);
+			anim.SetBool ("jumping", !cg.canJump ());
 		}
-		rb.velocity = new Vector2 (horVel, verVel);
-		staminaText.text = "Stamina: " + stamina + "\nSpeed: " + rb.velocity + "\nJumps left: " + pitJumps;	// Text for debug purposes
+		rb.velocity = new Vector2 (horVel, rb.velocity.y);
+		movementText.text = "Speed: " + rb.velocity + "\nJumps left: " + pitJumps + "\nCan jump: " + canJump;	// Text for debug purposes
+//		Debug.DrawLine(new Vector3(transform.position.x, transform.position.y - 0.32f, 0), new Vector3(transform.position.x, transform.position.y - 0.33f, 0));
 	}
+
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.tag == "monster") {
+		switch (other.gameObject.tag) {
+		case "monster":
 			sr.sprite = winSprite;	// temporary win behavior - change player color to yellow
+			break;
 		}
 	}
 
