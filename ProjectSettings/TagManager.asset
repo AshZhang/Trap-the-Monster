@@ -10,6 +10,8 @@ TagManager:
   - cage
   - bait
   - pit
+  - platform
+  - jump trigger
   layers:
   - Default
   - TransparentFX

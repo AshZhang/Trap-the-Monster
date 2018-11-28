@@ -5,12 +5,13 @@ using UnityEngine;
 public class MonsterTrapRadius : MonoBehaviour {
 
 	public GameObject monster;
-	public float jumpForce;
 
 	private CheckGround cg;
+	private float jumpForce;
 	// Use this for initialization
 	void Start () {
 		cg = monster.GetComponent<CheckGround> ();
+		jumpForce = monster.GetComponent<Monster> ().jumpForce - 5;
 	}
 	
 	// Update is called once per frame
