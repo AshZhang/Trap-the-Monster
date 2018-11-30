@@ -12,6 +12,7 @@ TagManager:
   - pit
   - platform
   - jump trigger
+  - jump trigger interact
   layers:
   - Default
   - TransparentFX

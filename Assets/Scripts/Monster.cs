@@ -20,6 +20,7 @@ public class Monster : MonoBehaviour {
 		trapped = false;
 		facingRight = true;
 		canSeePlayer = false;
+		player = GameObject.Find ("player");
 	}
 	
 	// Update is called once per frame
@@ -50,11 +51,14 @@ public class Monster : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D other){	// This collision is for the monster itself, to detect if it's fallen into a trap or touched other things
+	void OnCollisionEnter2D(Collision2D other){	// This collision is for the monster itself, to detect if it's fallen into a trap or touched other thing
 		switch (other.gameObject.tag) {
 		case "cage":
 		case "pit":
 			SceneManager.LoadScene ("Win");
+			break;
+		case "jump trigger interact":
+			Physics2D.IgnoreCollision (GetComponent<Collider2D>(), other.collider);
 			break;
 		}
 	}

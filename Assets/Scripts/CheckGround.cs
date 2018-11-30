@@ -13,11 +13,7 @@ public class CheckGround : MonoBehaviour {
 	void Start () {
 		onGround = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 	void FixedUpdate(){
 		onGround = Physics2D.OverlapCircle (new Vector2(transform.position.x, transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2.0f), groundCheckRad, ground);
 	}

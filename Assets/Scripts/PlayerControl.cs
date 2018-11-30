@@ -13,20 +13,23 @@ public class PlayerControl : MonoBehaviour
 
 	public int maxPitJumps;
 	// How many jumps the player must do in total to get out of pit
-	public Text movementText;
 
 	public SpriteRenderer sr;
 	public Sprite normalSprite;
 	public Sprite trappedSprite;
 	public Animator anim;
-	public int health;
-	public int maxHealth;
+	public int health = 30;
+	public int maxHealth = 30;
 	public int invinTime;
 
 	private int pitJumps;
 	private bool beingKbd;
 	private float time;
 	// How many jumps the player still has to do if they are trapped in a pit (starts at 0)
+
+	public AudioClip hurt;
+	public AudioClip jump;
+	public AudioSource sound;
 
 	// Use this for initialization
 	void Start ()
@@ -61,6 +64,8 @@ public class PlayerControl : MonoBehaviour
 		} else {
 			horVel = vel * Input.GetAxis ("Horizontal");
 			if (Input.GetKeyDown ("up") && canJump) {
+				sound.clip = jump;
+				sound.Play ();
 				rb.AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 			}
 
@@ -77,7 +82,6 @@ public class PlayerControl : MonoBehaviour
 			}
 
 		}
-		movementText.text = "Speed: " + rb.velocity + "\nJumps left: " + pitJumps + "\nCan jump: " + canJump;	// Text for debug purposes
 	}
 
 
@@ -85,10 +89,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		switch (other.gameObject.tag) {
 		case "monster":
-			if (!beingKbd) {
-				damage (other.gameObject);
-				beingKbd = true;
-			}
+			damage (other.gameObject);
 			break;
 		}
 	}
@@ -103,8 +104,13 @@ public class PlayerControl : MonoBehaviour
 
 	public void damage (GameObject other)
 	{
-		health -= 5;
-		transform.position = new Vector2 (transform.position.x, transform.position.y + 0.01f);
-		time = 0;
+		if (!beingKbd) {
+			sound.clip = hurt;
+			sound.Play ();
+			health -= 5;
+			transform.position = new Vector2 (transform.position.x, transform.position.y + 0.01f);
+			time = 0;
+			beingKbd = true;
+		}
 	}
 }
