@@ -29,7 +29,6 @@ public class MonsterTrapRadius : MonoBehaviour {
 		switch (other.gameObject.tag) {
 		case "cage":
 		case "pit":
-			Debug.Log ("Monster can see player: " + monster.GetComponent<Monster> ().canSeePlayer);
 			if (cg.canJump () && monster.GetComponent<Monster>().canSeePlayer) {
 				monster.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 			}

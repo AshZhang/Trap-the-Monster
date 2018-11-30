@@ -13,6 +13,7 @@ public class HealthUI : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		healthText = GameObject.Find ("health text").GetComponent<Text>();
 		healthBar.wholeNumbers = true;
 		healthBar.value = player.health;
 		healthText.text = "HP: " + player.health;

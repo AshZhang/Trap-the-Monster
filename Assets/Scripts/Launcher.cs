@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviour {
 
+	public AudioSource sound;
+
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "monster") {
-			Debug.Log ("used force");
+			sound.Play ();
 			Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D> ();
 			rb.AddForce (new Vector2(rb.velocity.x, 10), ForceMode2D.Impulse);
 		}
